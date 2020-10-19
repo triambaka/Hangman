@@ -1,15 +1,15 @@
 import random
+from bs4 import BeautifulSoup
+import urllib.request
 import requests
 
 
 def hangman(tally):
-    word_site = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain"
-    response = requests.get(word_site)
-    words = response.content.splitlines()
-    #words=['moon','goat','malayalam','tomato','pumpkin']
+
+    words=['moon','goat','malayalam','tomato','pumpkin']
     x=random.randint(0,len(words)-1)
     a=random.choice(words)
-    a=a.decode('utf-8')
+    #a=a.decode('utf-8')
     a=a.lower()
     b=str()
     print('Your word is: ', end= ' ')
@@ -51,7 +51,7 @@ def hangman(tally):
             if(b[i]=='_'):
                 buf=1
         if(buf==0):
-            print('\nYou have guessed the word with ' + str(count) +' chances left '+ str(points)+' points')
+            print('\nYou have guessed the word with ' + str(count) +' chances left \n'+ str(points)+' points\n\n')
             tally[0]=count
             tally[1]=points
             return tally
@@ -80,4 +80,3 @@ while(1):
         exit()
     else:
         print("Enter a valid response ")
-        
