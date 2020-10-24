@@ -2,15 +2,86 @@ import random
 from bs4 import BeautifulSoup
 import urllib.request
 import requests
-from random_word import RandomWords
 
+def display_hangman(tries):
+    stages = [  
+                """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|/
+                   |      |
+                   |     / \\
+                   -
+                """,
+                
+                """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|/
+                   |      |
+                   |     / 
+                   -
+                """,
+          
+                """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|/
+                   |      |
+                   |      
+                   -
+                """,
+         
+                """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|
+                   |      |
+                   |     
+                   -
+                """,
+          
+                """
+                   --------
+                   |      |
+                   |      O
+                   |      |
+                   |      |
+                   |     
+                   -
+                """,
+           
+                """
+                   --------
+                   |      |
+                   |      O
+                   |    
+                   |      
+                   |     
+                   -
+                """,
+             
+                """
+                   --------
+                   |      |
+                   |      
+                   |    
+                   |      
+                   |     
+                   -
+                """
+    ]
+    return stages[tries]
 
 
 def hangman(tally):
 
-    r = RandomWords()
-    words = r.get_random_words()
-    x=random.randint(0,1000)
+    words=['moon','goat','malayalam','tomato','pumpkin']
+    x=random.randint(0,len(words)-1)
     a=random.choice(words)
     #a=a.decode('utf-8')
     a=a.lower()
@@ -23,8 +94,9 @@ def hangman(tally):
     guess=[]
     count=tally[0]
     points=tally[1]
-    while(count>0):
-        print('\n\nYou have ' +str(count)+' chances to guess the word')
+    tries=7
+    while(tries>0):
+        print('\n\nYou have ' +str(tries)+' chances to guess the word')
         x=input("Enter an alphabet: ")[0]
         if(x.isalpha()==False):
             print("Enter a valid alphabet")
@@ -54,7 +126,8 @@ def hangman(tally):
                 if(guess[i]==x):
                     buffer1=1
             if(buffer1==0):
-                count=count-1
+                print(display_hangman(tries-1))
+                tries=tries-1
                 guess.append(x)
         buf=0
         for i in range(0, len(b)):
@@ -65,7 +138,7 @@ def hangman(tally):
             tally[0]=count
             tally[1]=points
             return tally
-    if(count==0):
+    if(tries==0):
         print('You lost. Better luck next time! \n Your word was: '+a+'\nYour points are: '+str(points))
         print(a)
         tally[0]=0
