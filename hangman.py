@@ -38,7 +38,12 @@ def hangman(tally):
                 b[i]=x
                 b="".join(b)
                 points=points+1
-        if(buffer==1 or found==0):
+        if(buffer==1):
+            print("Correct guess :)")
+            for j in range (0, len(b)):
+                print(b[j] ,end= ' ')
+        if(found==0):
+            print("Inorrect guess, try harder!!")
             for j in range (0, len(b)):
                 print(b[j] ,end= ' ')
         if(buffer==0):
