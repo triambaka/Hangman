@@ -147,7 +147,6 @@ def hangman(tally):
 
 print('HANGMAN')
 tally=[7,0]
-print(type(tally[0]))
 while(1):
     x=input('Press:\n 1.To play a new game \n 2. Continue existing game \n 3. Exit\n')
     x=int(x)
