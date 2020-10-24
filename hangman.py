@@ -2,12 +2,15 @@ import random
 from bs4 import BeautifulSoup
 import urllib.request
 import requests
+from random_word import RandomWords
+
 
 
 def hangman(tally):
 
-    words=['moon','goat','malayalam','tomato','pumpkin']
-    x=random.randint(0,len(words)-1)
+    r = RandomWords()
+    words = r.get_random_words()
+    x=random.randint(0,1000)
     a=random.choice(words)
     #a=a.decode('utf-8')
     a=a.lower()
@@ -64,6 +67,7 @@ def hangman(tally):
             return tally
     if(count==0):
         print('You lost. Better luck next time! \n Your word was: '+a+'\nYour points are: '+str(points))
+        print(a)
         tally[0]=0
         tally[1]=points
         return tally
