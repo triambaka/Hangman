@@ -6,6 +6,7 @@ Hangman
 
 ## What It Does??
 It implements a simple game of hangman with each user having 7 chance.This is a python code and hence easy to implement.
+![Working](Screenshot.png)
 
 ## How to install 
 1. ```git clone https://github.com/triambaka/Hangman.git```<br>
