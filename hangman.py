@@ -80,7 +80,15 @@ def display_hangman(tries):
 
 def hangman(tally):
 
-    words=['moon','goat','malayalam','tomato','pumpkin']
+    easy_words=['moon','goat']
+    hard_words=['malayalam','tomato','pumpkin']
+    print("Choose the difficulty level\n")
+    print("1.Easy\n2.Difficult\n")
+    ch=input("Enter your choice : ")
+    if(ch=='1'):
+        words=easy_words
+    elif(ch=='2'):
+        words=hard_words
     x=random.randint(0,len(words)-1)
     a=random.choice(words)
     #a=a.decode('utf-8')
@@ -163,3 +171,13 @@ while(1):
         exit()
     else:
         print("Enter a valid response ")
+
+import time
+import threading
+
+
+t = threading.Thread(target=hangman)
+t.daemon = True
+t.start()
+
+time.sleep(6)
