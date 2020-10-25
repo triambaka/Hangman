@@ -8,8 +8,8 @@ Hangman
 It implements a simple game of hangman with each user having 7 chance.This is a python code and hence easy to implement.
 
 ## How to install 
-git clone https://github.com/triambaka/Hangman.git
-cd Hangman
-pip install bs4
-python hangman.py or python3 hangman.py
-Now enjoy the game
+1. ```git clone https://github.com/triambaka/Hangman.git```<br>
+2. ```cd Hangman```<br>
+3. ```pip install bs4```<br>
+4. ```python hangman.py``` or ```python3 hangman.py```<br>
+5. Now enjoy the game<br>
