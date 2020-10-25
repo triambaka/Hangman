@@ -1,6 +1,9 @@
 # Hangman
 Hangman game implemented in python. Gives seven chances for the user to guess the word.
 
+<img src="/img1.png">
+<img src="/img2.png">
+
 ## Technology Stack
 - Python
 
