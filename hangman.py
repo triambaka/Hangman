@@ -3,10 +3,92 @@ from bs4 import BeautifulSoup
 import urllib.request
 import requests
 
+def display_hangman(tries):
+    stages = [  
+                """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|/
+                   |      |
+                   |     / \\
+                   -
+                """,
+                
+                """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|/
+                   |      |
+                   |     / 
+                   -
+                """,
+          
+                """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|/
+                   |      |
+                   |      
+                   -
+                """,
+         
+                """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|
+                   |      |
+                   |     
+                   -
+                """,
+          
+                """
+                   --------
+                   |      |
+                   |      O
+                   |      |
+                   |      |
+                   |     
+                   -
+                """,
+           
+                """
+                   --------
+                   |      |
+                   |      O
+                   |    
+                   |      
+                   |     
+                   -
+                """,
+             
+                """
+                   --------
+                   |      |
+                   |      
+                   |    
+                   |      
+                   |     
+                   -
+                """
+    ]
+    return stages[tries]
+
 
 def hangman(tally):
 
-    words=['moon','goat','malayalam','tomato','pumpkin']
+    easy_words=['moon','goat']
+    hard_words=['malayalam','tomato','pumpkin']
+    print("Choose the difficulty level\n")
+    print("1.Easy\n2.Difficult\n")
+    ch=input("Enter your choice : ")
+    if(ch=='1'):
+        words=easy_words
+    elif(ch=='2'):
+        words=hard_words
     x=random.randint(0,len(words)-1)
     a=random.choice(words)
     #a=a.decode('utf-8')
@@ -20,8 +102,9 @@ def hangman(tally):
     guess=[]
     count=tally[0]
     points=tally[1]
-    while(count>0):
-        print('\n\nYou have ' +str(count)+' chances to guess the word')
+    tries=7
+    while(tries>0):
+        print('\n\nYou have ' +str(tries)+' chances to guess the word')
         x=input("Enter an alphabet: ")[0]
         if(x.isalpha()==False):
             print("Enter a valid alphabet")
@@ -51,7 +134,8 @@ def hangman(tally):
                 if(guess[i]==x):
                     buffer1=1
             if(buffer1==0):
-                count=count-1
+                print(display_hangman(tries-1))
+                tries=tries-1
                 guess.append(x)
         buf=0
         for i in range(0, len(b)):
@@ -62,15 +146,15 @@ def hangman(tally):
             tally[0]=count
             tally[1]=points
             return tally
-    if(count==0):
+    if(tries==0):
         print('You lost. Better luck next time! \n Your word was: '+a+'\nYour points are: '+str(points))
+        print(a)
         tally[0]=0
         tally[1]=points
         return tally
 
 print('HANGMAN')
 tally=[7,0]
-print(type(tally[0]))
 while(1):
     x=input('Press:\n 1.To play a new game \n 2. Continue existing game \n 3. Exit\n')
     x=int(x)
@@ -87,3 +171,13 @@ while(1):
         exit()
     else:
         print("Enter a valid response ")
+
+import time
+import threading
+
+
+t = threading.Thread(target=hangman)
+t.daemon = True
+t.start()
+
+time.sleep(6)
