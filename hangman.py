@@ -147,19 +147,19 @@ def hangman(tally):
 
 print('HANGMAN')
 tally=[7,0]
-while(1):
+while True:
     x=input('Press:\n 1.To play a new game \n 2. Continue existing game \n 3. Exit\n')
     x=int(x)
     if(x==1):
         tally=[7,0]
         tally= hangman(tally)
-    if(x==2):
+    elif(x==2):
         if(tally[0]==0):
             tally[0]=7
             tally[1]=0
         tally=hangman(tally)
         
-    if(x==3):
+    elif(x==3):
         exit()
     else:
         print("Enter a valid response ")
